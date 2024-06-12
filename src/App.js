@@ -8,10 +8,10 @@ const App = () => {
   description: "",
 });
 
+const [tasks, setTasks] = useState([])
+
 //Testing Submission
 const [formSubmitted, setFormSubmitted] = useState(false);
-
-const [tasks, setTasks] = useState([])
 
 //Functions
 const handleInputChange = (e) => {
@@ -21,11 +21,12 @@ const handleInputChange = (e) => {
 
 const handleSubmit = (e) =>{
   e.preventDefault();
+  setFormSubmitted(true);
   setFormData({
     task: "",
     description: "",
   })
-  setFormSubmitted(true);
+  setTasks([...tasks, formData]);
 };
 
 return (
@@ -50,8 +51,8 @@ return (
         tasks.map((task, index)=>{
           return(
             <li key={index}>
-              <dd>{task.task}</dd>
-              <dd>{task.description}</dd>
+              <dd data-testid="taskName">{task.task}</dd>
+              <dd data-testid="descName">{task.description}</dd>
             </li>
           )
         })}

@@ -83,6 +83,23 @@ test(`Form submission is successful`, ()=>{
     const stateMessage = app.getByText("Form submitted successfully");
     //Our logic here is that after clicking the submission button we have our component set up to conditionally render the message "Form submitted successfully" by updating state via form submission handling logic (we can do this through a handleSubmission function) --> If this is true, then our test will result as expected because the message WILL INDEED be rendered in the Document
     expect(stateMessage).toBeInTheDocument();
+});
+
+test(`Tasks are put into state array after form submission`, ()=>{
+    const app = render(<App />);
+    const button = app.getByText("+");
+    const taskInput = app.getByLabelText("Task:")
+    const descInput = app.getByLabelText("Description:")
+    //Here, we begin the simulation after capturing all the necessary elements for the action of "form submission" to occur
+    fireEvent.change(taskInput, {target: {value: "New Task"}})
+    fireEvent.change(descInput, {target: {value: "New Description"}})
+    fireEvent.click(button);
+
+    //Here, we will be targeting the elements that will hold the rendered input we generated through the fireEvent.click(button) --> We will be setting a "data-testid" attribute to both elements and checking if their TEXT CONTENT is what we set the inputs to be through the fireEvent.change() method
+    const taskName = app.getByTestId("taskName");
+    const descName = app.getByTestId("descName");
+    expect(taskName).toHaveTextContent("New Task");
+    expect(descName).toHaveTextContent("New Description");
 })
 
 
