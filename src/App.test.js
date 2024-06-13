@@ -100,7 +100,9 @@ test(`Tasks are put into state array after form submission`, ()=>{
     const descName = app.getByTestId("descName");
     expect(taskName).toHaveTextContent("New Task");
     expect(descName).toHaveTextContent("New Description");
-})
+});
+
+
 
 
 

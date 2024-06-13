@@ -1,4 +1,6 @@
 import {useState} from "react"
+import Counter from './components/Counter';
+
 
 const App = () => {
 
@@ -61,7 +63,7 @@ return (
     {formSubmitted && (
       <p>Form submitted successfully</p>
     )}
-
+    <Counter />
   </>
 
 )
