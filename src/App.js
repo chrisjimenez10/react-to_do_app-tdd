@@ -63,7 +63,7 @@ return (
     {formSubmitted && (
       <p>Form submitted successfully</p>
     )}
-    <Counter />
+    
   </>
 
 )

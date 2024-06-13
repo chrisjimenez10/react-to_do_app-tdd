@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, getByText, getByLabelText } from '@testing-library/react';
 import App from './App';
 // import Form from "./Form";
 
@@ -100,6 +100,16 @@ test(`Tasks are put into state array after form submission`, ()=>{
     const descName = app.getByTestId("descName");
     expect(taskName).toHaveTextContent("New Task");
     expect(descName).toHaveTextContent("New Description");
+});
+
+test(`Input fields should return to empty after form is submitted`, ()=>{
+    render(<App />)
+    const button = screen.getByText("+")
+    const taskInput = screen.getByLabelText("Task:")
+    const descInput = screen.getByLabelText("Description:")
+    fireEvent.click(button)
+    expect(taskInput.value).toBe("")
+    expect(descInput.value).toBe("")
 });
 
 

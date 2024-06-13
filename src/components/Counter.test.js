@@ -53,3 +53,15 @@ test(`Counter should decrease the value correclty when remove button is clicked 
     const count = screen.getByText(8)
     expect(count).toBeInTheDocument();
 });
+
+test(`Counter should NOT go into the negative number range when initial value is 0 and remove button is clicked 4 times`, ()=>{
+    render(<Counter initialValue={0}/>)
+    const removebutton = screen.getByText("-")
+    fireEvent.click(removebutton)
+    fireEvent.click(removebutton)
+    fireEvent.click(removebutton)
+    fireEvent.click(removebutton)
+    const count = screen.getByText(0)
+    expect(count).toBeInTheDocument();
+});
+

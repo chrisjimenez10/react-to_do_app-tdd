@@ -16,7 +16,12 @@ const Counter = ({initialValue}) => {
   };
 
   const handleRemove = () => {
-    setCounter((prevCount) => prevCount - 1);
+    //Here, we are handling negative number counter - we DO NOT want negative numbers
+    if(counter <= 0){
+      setCounter(0);
+    }else{
+      setCounter((prevCount) => prevCount - 1);
+    }
   };
     
   return (
