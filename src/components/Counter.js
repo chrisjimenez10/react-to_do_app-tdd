@@ -17,11 +17,19 @@ const Counter = ({initialValue}) => {
 
   const handleRemove = () => {
     //Here, we are handling negative number counter - we DO NOT want negative numbers
-    if(counter <= 0){
-      setCounter(0);
-    }else{
-      setCounter((prevCount) => prevCount - 1);
-    }
+    // if(counter <= 0){
+    //   setCounter(0);
+    // }else{
+    //   setCounter((prevCount) => prevCount - 1);
+    // }
+    setCounter((prevCount)=>{
+      //Here, we can also add the logic inside the lambda expression
+      const result = prevCount - 1;
+      if(result < 0){
+        return 0;
+      }
+      return result;
+    });
   };
     
   return (
